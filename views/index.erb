@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+  <style type="text/css">
+    .table {
+      background-color: white;
+      border-radius: 3px;
+    }
+  </style>
+
+  <title>Mastermind</title>
+</head>
+<body>
+  <div class="container">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="jumbotron">
+
+        <h1>Mastermind</h1>
+        <p class="lead">
+          Instructions goes here...
+        </p>
+        <hr>
+        <p>
+          Content goes here.
+        </p>
+        <form>
+          <div class="row">
+            <div class="col">
+              <label for="color1">1st peg</label>
+              <select multiple class="form-control" name="color1" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label for="color2">2nd peg</label>
+              <select multiple class="form-control" name="color2" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label for="color3">3rd peg</label>
+              <select multiple class="form-control" name="color3" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+
+            <div class="col">
+              <label for="color4">4th peg</label>
+              <select multiple class="form-control" name="color4" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <input type="submit" value="Guess!">
+        </form>
+        <hr>
+
+        <table class="table table-bordered table-hover table-sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Guess</th>
+              <th>Evaluation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% feedback.each_with_index do |round, idx| %>
+              <tr<%= " class='table-success'" if guess[idx] == code %>>
+                <th scope="row"><%= idx + 1 %></th>
+                <td><%= guess[idx] %></td>
+                <td><%= round %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <p>
+          <b>Code:</b> <%= code %>
+        </p>
+
+        <p>
+          <b>Message:</b> <%= message unless message.nil? %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

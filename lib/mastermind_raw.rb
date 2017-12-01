@@ -44,7 +44,7 @@ class Mastermind
     puts ">> [2] Codebreaker"
     input = gets.chomp.to_i
     until input == 1 || input == 2
-      "What? Type 1 for Codemaker or 2 for Codebreaker, please:"
+      puts "What? Type 1 for Codemaker or 2 for Codebreaker, please:"
       input = gets.chomp.to_i
     end
     input == 1 ? @player = Codemaker.new : @player = Codebreaker.new
