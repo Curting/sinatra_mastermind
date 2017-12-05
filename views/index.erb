@@ -3,12 +3,7 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-  <style type="text/css">
-    .table {
-      background-color: white;
-      border-radius: 3px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="app.css">
 
   <title>Mastermind</title>
 </head>
@@ -93,8 +88,8 @@
             <% feedback.each_with_index do |round, idx| %>
               <tr<%= " class='table-success'" if guess[idx] == code %><%= " class='table-danger'" if guess[idx] != code && guess_count == 8 %>>
                 <th scope="row"><%= idx + 1 %></th>
-                <td><%= guess[idx] %></td>
-                <td><%= round %></td>
+                <td><%= guess[idx].map { |num| "<div class='peg #{num.to_color}'></div>" }.join(" ") %></td>
+                <td><%= round.map { |num| "<div class='peg #{num.to_color}'></div>" }.join(" ") %></td>
               </tr>
             <% end %>
           </tbody>

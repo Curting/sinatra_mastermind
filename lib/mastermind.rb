@@ -31,23 +31,23 @@ class MasterMind
   end
 
   def evaluate(input, answer)
-    feedback = [" ", " ", " ", " "]
+    feedback = [0, 0, 0, 0]
     # Duplicate temp_code so it doesn't point directly to @code (destructive)
     temp_code = answer.dup
 
-    # Correct color and position = ●
+    # Correct color and position = -2
     temp_code.each_with_index do |x, index|
       if x == input[index]
-        feedback[index] = "●"
+        feedback[index] = -2
         # Remove the used color (to avoid false duplicates)
         temp_code[index] = nil
       end
     end
 
-    # Correct color but WRONG position = ○
+    # Correct color but WRONG position = -1
     input.each_with_index do |x, index|
-      if temp_code.include?(x) && feedback[index] != "●"
-        feedback[index] = "○"
+      if temp_code.include?(x) && feedback[index] != -2
+        feedback[index] = -1
         # Remove the used color by finding the index
         temp_code[temp_code.index(x)] = nil
       end
@@ -101,6 +101,9 @@ end
 class Integer
   def to_color
     case self
+    when -2 then "black"
+    when -1 then "white"
+    when 0 then "gray"
     when 1 then "red"
     when 2 then "blue"
     when 3 then "green"

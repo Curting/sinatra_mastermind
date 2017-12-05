@@ -1,0 +1,47 @@
+.table {
+	background-color: white;
+	border-radius: 3px;
+}
+
+.peg {
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	border-radius: 100%
+}
+
+.red {
+	background-color: red;
+}
+
+.blue {
+	background-color: blue;
+}
+
+.green {
+	background-color: green;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.orange {
+	background-color: orange;
+}
+
+.purple {
+	background-color: purple;
+}
+
+.black {
+	background-color: #333;
+}
+
+.white {
+	background-color: white;
+}
+
+.gray {
+	background-color: lightgray;
+}
