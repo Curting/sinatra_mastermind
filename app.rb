@@ -23,12 +23,13 @@ get '/' do
     end
 
     if game.game_over?
-      message = "You won!" if game.won?
-      message = "You lost." if game.lost?
+      message = "You won! 😄" if game.won?
+      message = "You lost! 💩" if game.lost?
     end
   end
 
   erb :index, :locals => { :guess => game.guess, :feedback => game.feedback, :code => game.code, :guess_count => game.guess_count,
-                           :message => message }
+                           :message => message, :game_over => game.game_over?, :won => game.won?, :lost => game.lost? }
+
 end
 

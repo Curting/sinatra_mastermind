@@ -1,12 +1,9 @@
-.peg {
-	height: 30px;
-	width: 30px;
-	display: inline-block;
-	border-radius: 100%
+body {
+	margin-top: 30px;
 }
 
 select {
-	height: 155px
+	height: 159px
 }
 
 select option {
@@ -17,8 +14,15 @@ select option:checked {
 	border: 2px dotted lightgray;
 }
 
-input#submit {
-	margin-top: 30px;
+#guesses-left {
+	margin-top: 8px;
+}
+
+.peg {
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	border-radius: 100%
 }
 
 .red {
@@ -34,11 +38,11 @@ input#submit {
 }
 
 .yellow {
-	background-color: #f1c40f;
+	background-color: #FFEB3B;
 }
 
 .orange {
-	background-color: #e67e22;
+	background-color: #f39c12;
 }
 
 .purple {

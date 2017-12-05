@@ -14,32 +14,79 @@
 
         <h1>Mastermind</h1>
         <p class="lead">
-          Instructions goes here...
+          I'm thinking of a color combination of four colors. Can you guess it?
         </p>
-        <hr>
-        <p>
-          Content goes here.
-        </p>
-        <form>
-          <div class="row">
 
-            <% 4.times do |i| %>
-              <div class="col">
-                <label for=<%= "'color#{ i + 1 }'" %>><%= i + 1 %>. peg</label>
-                <select multiple class="form-control" name=<%= "color#{i + 1}" %> required>
-                  <option class="red" value="1"></option>
-                  <option class="blue" value="2"></option>
-                  <option class="green" value="3"></option>
-                  <option class="yellow" value="4"></option>
-                  <option class="orange" value="5"></option>
-                  <option class="purple" value="6"></option>
-                </select>
-              </div>
-            <% end %>
+        <p>
+          <a class="btn btn-outline-secondary" data-toggle="collapse" href="#instructions" aria-expanded="false" aria-controls="instructions">
+            Read Instructions
+          </a>
+        </p>
+
+        <div class="collapse" id="instructions">
+          <div class="card card-body">
+            <h3>Instructions</h3>
+            <p>Your job is to guess my combination of 4 colors. There are 6 colors in total to choose from, which gives you around 1296 possible choices. You have 8 guesses. Good luck with that.</p>
+
+            <p>Oh, you want help? Sure. I'll evaluate each of your guesses.</p>
+            <h4>Evaluation</h4>
+
+            <p><div class="peg invis"></div></p>
+
+            <p><strong>Blank</strong> means the color and position is wrong.</p>
+
+            <p><div class="peg white"></div></p>
+
+            <p><strong>White peg</strong> means the color is right but the position is wrong.</p>
+
+            <p><div class="peg black"></div></p>
+
+            <p><strong>Black peg</strong> means that the color AND position is correct. Four of these guys and you've won.</p>
+
+            <h4>Duplicates</h4>
+            <p>If there are duplicate colors in the guess, they cannot all be awarded a peg unless they correspond to the same number of duplicate colors in my combination.</p>
+
+            <p><strong>Good luck!</strong></p>
+         
           </div>
-          <br>
-          <input type="submit" id="submit" value="Guess!">
-        </form>
+        </div>
+
+        <hr>
+
+        <% if game_over %>
+          <div class=<%= won ? "'alert alert-success'" : "'alert alert-danger'" %> role="alert">
+            <p class="display-2"><%= message %></p>
+          </div>
+
+          <a class="btn btn-primary btn-lg btn-block" href="javascript:history.go(0)">Play again</a>
+        <% else %>
+
+          <form>
+            <div class="row">
+
+              <% 4.times do |i| %>
+                <div class="col">
+                  <label class="text-muted" for=<%= "'color#{ i + 1 }'" %>><%= i + 1 %>. peg</label>
+                  <select multiple class="form-control" name=<%= "color#{i + 1}" %> required>
+                    <option class="red" value="1"></option>
+                    <option class="blue" value="2"></option>
+                    <option class="green" value="3"></option>
+                    <option class="yellow" value="4"></option>
+                    <option class="orange" value="5"></option>
+                    <option class="purple" value="6"></option>
+                  </select>
+                </div>
+              <% end %>
+            </div>
+            <br>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Guess!">
+          </form>
+        <% end %>
+
+        <p id="guesses-left" class="text-muted text-center">
+          You have <span class="badge badge-secondary"><%= 8 - guess_count %></span> guess(es) left
+        </p>
+        
         <hr>
 
         <table class="table table-bordered table-bordered table-sm">
@@ -53,7 +100,7 @@
           </thead>
           <tbody>
             <% feedback.each_with_index do |round, idx| %>
-              <tr<%= " class='table-success'" if guess[idx] == code %><%= " class='table-danger'" if guess[idx] != code && guess_count == 8 %>>
+              <tr<%= " class='table-success'" if guess[idx] == code %>>
                 <th scope="row"><%= idx + 1 %></th>
                 <td><%= guess[idx].map { |num| "<div class='peg #{num.to_color}'></div>" }.join(" ") %></td>
                 <td><%= round.map { |num| "<div class='peg #{num.to_color}'></div>" }.join(" ") %></td>
@@ -63,18 +110,22 @@
         </table>
 
         <p>
-          <b>Code:</b> <%= code %>
+          <a class="btn btn-sm btn-outline-secondary" data-toggle="collapse" href="#cheat" aria-expanded="false" aria-controls="cheat">
+            I'm a cheater, show me the answer
+          </a>
         </p>
 
-        <p>
-          <b>Message:</b> <%= message unless message.nil? %>
-        </p>
-
-        <a class="button" href="javascript:history.go(0)">Play again</a>
+        <div class="collapse" id="cheat">
+          <%= code.map { |num| "<div class='peg #{num.to_color}'></div>" }.join(" ") %>
+        </div>
 
       </div>
     </div>
   </div>
 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
 </html>
