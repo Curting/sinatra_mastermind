@@ -80,7 +80,8 @@
         </form>
         <hr>
 
-        <table class="table table-bordered table-hover table-sm">
+        <table class="table table-bordered table-striped table-sm">
+          <caption>List of guesses</caption>
           <thead>
             <tr>
               <th>#</th>
@@ -90,7 +91,7 @@
           </thead>
           <tbody>
             <% feedback.each_with_index do |round, idx| %>
-              <tr<%= " class='table-success'" if guess[idx] == code %>>
+              <tr<%= " class='table-success'" if guess[idx] == code %><%= " class='table-danger'" if guess[idx] != code && guess_count == 8 %>>
                 <th scope="row"><%= idx + 1 %></th>
                 <td><%= guess[idx] %></td>
                 <td><%= round %></td>

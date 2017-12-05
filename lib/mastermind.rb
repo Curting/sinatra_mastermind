@@ -97,3 +97,16 @@ class Codebreaker < MasterMind
   end
   
 end
+
+class Integer
+  def to_color
+    case self
+    when 1 then "red"
+    when 2 then "blue"
+    when 3 then "green"
+    when 4 then "yellow"
+    when 5 then "orange"
+    when 6 then "purple"
+    end
+  end
+end
