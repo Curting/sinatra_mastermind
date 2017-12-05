@@ -103,7 +103,7 @@ class Integer
     case self
     when -2 then "black"
     when -1 then "white"
-    when 0 then "gray"
+    when 0 then "invis"
     when 1 then "red"
     when 2 then "blue"
     when 3 then "green"

@@ -22,60 +22,27 @@
         </p>
         <form>
           <div class="row">
-            <div class="col">
-              <label for="color1">1st peg</label>
-              <select multiple class="form-control" name="color1" required>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-            </div>
 
-            <div class="col">
-              <label for="color2">2nd peg</label>
-              <select multiple class="form-control" name="color2" required>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-            </div>
-
-            <div class="col">
-              <label for="color3">3rd peg</label>
-              <select multiple class="form-control" name="color3" required>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-            </div>
-
-            <div class="col">
-              <label for="color4">4th peg</label>
-              <select multiple class="form-control" name="color4" required>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-              </select>
-            </div>
+            <% 4.times do |i| %>
+              <div class="col">
+                <label for=<%= "'color#{ i + 1 }'" %>><%= i + 1 %>. peg</label>
+                <select multiple class="form-control" name=<%= "color#{i + 1}" %> required>
+                  <option class="red" value="1"></option>
+                  <option class="blue" value="2"></option>
+                  <option class="green" value="3"></option>
+                  <option class="yellow" value="4"></option>
+                  <option class="orange" value="5"></option>
+                  <option class="purple" value="6"></option>
+                </select>
+              </div>
+            <% end %>
           </div>
           <br>
-          <input type="submit" value="Guess!">
+          <input type="submit" id="submit" value="Guess!">
         </form>
         <hr>
 
-        <table class="table table-bordered table-striped table-sm">
+        <table class="table table-bordered table-bordered table-sm">
           <caption>List of guesses</caption>
           <thead>
             <tr>
@@ -102,6 +69,8 @@
         <p>
           <b>Message:</b> <%= message unless message.nil? %>
         </p>
+
+        <a class="button" href="javascript:history.go(0)">Play again</a>
 
       </div>
     </div>

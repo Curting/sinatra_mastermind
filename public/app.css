@@ -1,8 +1,3 @@
-.table {
-	background-color: white;
-	border-radius: 3px;
-}
-
 .peg {
 	height: 30px;
 	width: 30px;
@@ -10,28 +5,44 @@
 	border-radius: 100%
 }
 
+select {
+	height: 155px
+}
+
+select option {
+	margin-bottom: 5px;
+}
+
+select option:checked {
+	border: 2px dotted lightgray;
+}
+
+input#submit {
+	margin-top: 30px;
+}
+
 .red {
-	background-color: red;
+	background-color: #e74c3c;
 }
 
 .blue {
-	background-color: blue;
+	background-color: #3498db;
 }
 
 .green {
-	background-color: green;
+	background-color: #2ecc71;
 }
 
 .yellow {
-	background-color: yellow;
+	background-color: #f1c40f;
 }
 
 .orange {
-	background-color: orange;
+	background-color: #e67e22;
 }
 
 .purple {
-	background-color: purple;
+	background-color: #9b59b6;
 }
 
 .black {
@@ -40,8 +51,9 @@
 
 .white {
 	background-color: white;
+	border: 2px solid lightgray;
 }
 
-.gray {
-	background-color: lightgray;
+.invis {
+	border: 2px dotted lightgray;
 }
