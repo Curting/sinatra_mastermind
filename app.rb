@@ -3,33 +3,35 @@ require 'sinatra/reloader' if development?
 
 require_relative 'lib/mastermind'
 
-# enable :sessions
+enable :sessions
 
-game = Codebreaker.new
+
 
 get '/' do
 
-  if game.game_over?
-    game.reset
+  session[:game] ||= Codebreaker.new
+
+  if session[:game].game_over?
+    session[:game].reset
   else
     unless params["color1"].nil? || params["color2"].nil? || params["color3"].nil? ||
            params["color4"].nil?
 
-      game.guess << [params["color1"].to_i, params["color2"].to_i, params["color3"].to_i,
+      session[:game].guess << [params["color1"].to_i, params["color2"].to_i, params["color3"].to_i,
                 params["color4"].to_i]
 
-      game.guess_and_evaluate(game.guess.last)
+      session[:game].guess_and_evaluate(session[:game].guess.last)
 
     end
 
-    if game.game_over?
-      message = "You won! 😄" if game.won?
-      message = "You lost! 💩" if game.lost?
+    if session[:game].game_over?
+      message = "You won! 😄" if session[:game].won?
+      message = "You lost! 💩" if session[:game].lost?
     end
   end
 
-  erb :index, :locals => { :guess => game.guess, :feedback => game.feedback, :code => game.code, :guess_count => game.guess_count,
-                           :message => message, :game_over => game.game_over?, :won => game.won?, :lost => game.lost? }
+  erb :index, :locals => { :guess => session[:game].guess, :feedback => session[:game].feedback, :code => session[:game].code, :guess_count => session[:game].guess_count,
+                           :message => message, :game_over => session[:game].game_over?, :won => session[:game].won?, :lost => session[:game].lost? }
 
 end
 
