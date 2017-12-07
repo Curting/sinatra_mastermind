@@ -67,9 +67,7 @@ class MasterMind
   def game_over?
     won? || lost?
   end
-
 end
-
 
 class Codebreaker < MasterMind
 
@@ -78,14 +76,6 @@ class Codebreaker < MasterMind
   end
 
   def guess_and_evaluate(guess)
-    # if @guess_count == 0
-    #   puts "What's your first guess?"
-    # else
-    #   puts "You've got #{@rounds - @guess_count} guesses left."
-    #   puts "What's your next guess?"
-    # end
-    # Extract numbers (strings in array) and turn them into integers
-
     if valid_input?(guess)
       @feedback << evaluate(guess, @code)
       # show_board
@@ -95,7 +85,6 @@ class Codebreaker < MasterMind
       guess_and_evaluate
     end
   end
-  
 end
 
 class Integer

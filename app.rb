@@ -5,8 +5,6 @@ require_relative 'lib/mastermind'
 
 enable :sessions
 
-
-
 get '/' do
 
   session[:game] ||= Codebreaker.new
